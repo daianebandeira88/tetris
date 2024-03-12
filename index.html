@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Tetris</title>
+    <style>
+        /* Estilos para o tabuleiro */
+        #gameBoard {
+           
+            width: 200px;
+            height: 400px;
+            
+            position: relative; /* Importante para posicionamento absoluto das peças */
+        }
+
+        /* Estilos para as peças */
+        .piece {
+            position: absolute;
+            background-color: #00f;
+            width: 20px;
+            height: 20px;
+        }
+    </style>
+</head>
+<body class="bg-gray-800"> 
+    <div id="gameBoard" class="mt-20 ml-60 border-solid border-2 border-gray-100 rounded-md"></div>
+    <script>
+        // Função para criar uma nova peça
+        function createPiece() {
+            const piece = document.createElement('div');
+            piece.classList.add('piece');
+            piece.style.top = '0';
+            piece.style.left = '90px'; // Posição inicial
+            document.getElementById('gameBoard').appendChild(piece);
+            return piece;
+        }
+
+        // Função para mover a peça para baixo
+        function moveDown(piece) {
+            let top = parseInt(piece.style.top);
+            top += 20; // Movimento de uma célula para baixo
+            piece.style.top = top + 'px';
+        }
+
+        // Função principal
+        function main() {
+            const gameBoard = document.getElementById('gameBoard');
+            const piece = createPiece();
+            
+            // Definir loop de jogo para mover a peça para baixo a cada intervalo de tempo
+            setInterval(function() {
+                moveDown(piece);
+            }, 1000); // Intervalo de 1 segundo (1000 milissegundos)
+        }
+
+        // Iniciar o jogo
+        main();
+    </script>
+</body>
+</html>
